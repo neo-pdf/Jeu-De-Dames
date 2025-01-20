@@ -4,7 +4,7 @@ public class Plateau {
     static Case name = new Case();
     public static void main(String[] args) {
         String[][] plateau = newPlateau();
-        System.out.println("Comment le plateau est codé :");
+        System.out.println("Comment le plateau est code :");
         System.out.println(Arrays.deepToString(plateau));
         System.out.println("Affichage du plateau :");
         for (String[] row : plateau) {
