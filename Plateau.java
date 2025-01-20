@@ -18,12 +18,13 @@ public class Plateau {
         String[][] plateau = new String[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                plateau[i][j] = name.name;
+                if ((i >= 3 && i <= 4) || (i%2 == 0 && j%2 == 1 || i%2 == 1 && j%2 == 0)) {
+                    plateau[i][j] = name.name;
+                } else {
+                    plateau[i][j] = "C";
+                }
             }
         }
         return plateau;
-
-
-
     }
 }
