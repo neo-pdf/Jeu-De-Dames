@@ -1,3 +1,5 @@
 public class Joueur {
-    private String nom;
+    public static void main(String[] args) {
+
+    }
 }

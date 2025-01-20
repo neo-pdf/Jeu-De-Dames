@@ -1,3 +1,4 @@
 public class Case {
-    String name = "C";
+    Piece piece = new Piece();
+    String name = piece.piece;
 }

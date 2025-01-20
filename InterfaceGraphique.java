@@ -12,7 +12,7 @@ class createFrame extends JFrame{
         this.setTitle("Jeu de dames");
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setUndecorated(false);
-        this.getContentPane().setBackground(new Color(153, 255, 204));
+        this.getContentPane().setBackground(new Color(56, 88, 73));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
