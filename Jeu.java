@@ -68,19 +68,54 @@ public class Jeu {
         }
         System.out.println("Mouvements possibles : " + mouvementsPossibles);
 
-        System.out.println("Entrez l'indice de la case d'arrivee (1-50) : ");
-        int caseArrivee = scanner.nextInt() - 1;
+        boolean captureEffectuee = false;
+        while (true) {
+            System.out.println("Entrez l'indice de la case d'arrivee (1-50) : ");
+            int caseArrivee = scanner.nextInt() - 1;
 
-        if (!mouvementsPossibles.contains(caseArrivee + 1)) { // Ajouter 1 a l'index
-            System.out.println("Mouvement invalide : vous ne pouvez pas deplacer le pion a cette case.");
-            return;
+            if (!mouvementsPossibles.contains(caseArrivee + 1)) { // Ajouter 1 a l'index
+                System.out.println("Mouvement invalide : vous ne pouvez pas deplacer le pion a cette case.");
+                return;
+            }
+
+            // Vérifier si c'est une capture
+            int delta = caseArrivee - caseDepart;
+            if (Math.abs(delta) == 10 || Math.abs(delta) == 12) {
+                int caseCapture = caseDepart + delta / 2;
+                plateau.getPlateau().get(caseCapture).retirerPiece();
+                joueurActuel.setPieceRestante(joueurActuel.getPieceRestante() - 1);
+                captureEffectuee = true;
+                System.out.println("Capture effectuee ! Vous allez a la case " + (caseArrivee + 1) + ".");
+            }
+
+            plateau.getPlateau().get(caseArrivee).setPiece(pieceDepart);
+            plateau.getPlateau().get(caseDepart).retirerPiece();
+
+            if (!captureEffectuee) {
+                break;
+            }
+
+            caseDepart = caseArrivee;
+            mouvementsPossibles = pieceDepart.mouvementsPossibles(caseDepart, plateau.getPlateau());
+            if (mouvementsPossibles.isEmpty() || !peutEffectuerCapture(caseDepart, mouvementsPossibles)) {
+                break;
+            }
+            System.out.println("Vous pouvez effectuer une autre capture. Mouvements possibles : " + mouvementsPossibles);
         }
-        plateau.getPlateau().get(caseArrivee).setPiece(pieceDepart);
-        plateau.getPlateau().get(caseDepart).retirerPiece();
 
         tourJoueur1 = !tourJoueur1;
 
         finDuJeu();
+    }
+
+    private boolean peutEffectuerCapture(int caseDepart, List<Integer> mouvementsPossibles) {
+        for (int pos : mouvementsPossibles) {
+            int delta = pos - 1 - caseDepart;
+            if (Math.abs(delta) == 10 || Math.abs(delta) == 12) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void finDuJeu() {
