@@ -22,33 +22,24 @@ public class Plateau {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if ((i + j) % 2 == 0) {
-                    if (index < plateau.size() + 1) {
+                    if (index < plateau.size()) {
                         Case currentCase = plateau.get(index);
                         if (currentCase.getPiece() != null) {
-                            System.out.print(currentCase.getPiece().getColor() + currentCase.getPiece().getType() + " ");
+                            System.out.print("[" + currentCase.getPiece().getColor() + currentCase.getPiece().getType().charAt(0) + "(" + (index + 1) + ")]");
                         } else {
-                            System.out.print("N ");
+                            System.out.print("[   " + (index + 1) + " ]");
                         }
                         index++;
                     }
                 } else {
-                    System.out.print("B ");
+                    System.out.print("   ");
                 }
             }
             System.out.println();
         }
     }
 
-    public List<Case> obtenirMouvementsPossibles(Case pieceCase) {
-        List<Case> mouvements = new ArrayList<>();
-        // Logique pour déterminer les mouvements possibles en fonction de la pièce et de sa position
-        // Ajouter les cases à la liste des mouvements
-        return mouvements;
-    }
-
-
     public List<Case> getPlateau() {
         return plateau;
     }
-
 }

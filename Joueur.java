@@ -1,4 +1,3 @@
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Joueur {
@@ -6,8 +5,9 @@ public class Joueur {
     private String couleur;
     private int pieceRestante;
 
-    public Joueur() {
+    public Joueur(String couleur) {
         this.nom = "Joueur";
+        this.couleur = couleur;
         this.pieceRestante = 20;
     }
 
