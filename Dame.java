@@ -17,23 +17,16 @@ public class Dame extends Piece {
         for (int direction : directions) {
             int newPos = position + direction;
             while (newPos >= 0 && newPos < 50 && plateau.get(newPos).estVide() && estMouvementValide(position, newPos)) {
-                mouvements.add(newPos + 1); // Ajouter 1 a l'index
+                mouvements.add(newPos + 1);
                 newPos += direction;
-            }
-            // Vérifier les captures
-            if (newPos >= 0 && newPos < 50 && !plateau.get(newPos).estVide() && !plateau.get(newPos).getPiece().getColor().equals(getColor())) {
-                int capturePos = newPos + direction;
-                if (capturePos >= 0 && capturePos < 50 && plateau.get(capturePos).estVide() && estMouvementValide(position, capturePos)) {
-                    mouvements.add(capturePos + 1); // Ajouter 1 a l'index
-                }
             }
         }
         return mouvements;
     }
 
     private boolean estMouvementValide(int position, int newPos) {
-        int rowDepart = position / 5;
-        int rowArrivee = newPos / 5;
-        return Math.abs(rowDepart - rowArrivee) == Math.abs((position % 5) - (newPos % 5));
+        int colonneDepart = position / 5;
+        int colonneArrivee = newPos / 5;
+        return Math.abs(colonneDepart - colonneArrivee) == Math.abs((position % 5) - (newPos % 5));
     }
 }
