@@ -1,37 +1,29 @@
-// Classe représentant une pièce
-class Piece {
-    private String type; // Exemple : "Blanc" ou "Noir"
-
-    public Piece(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
-    }
-}
-
-// Classe représentant une case du plateau
 public class Case {
-    private Piece piece; // Peut être null si la case est vide
+    private final int id;
+    private Piece piece;
 
-    public Case() {
-        this.piece = null; // Par défaut, la case est vide
-    }
-
-    public void placerPiece(Piece piece) {
+    public Case(int id, Piece piece) {
+        this.id = id;
         this.piece = piece;
     }
 
-    public void enleverPiece() {
-        this.piece = null;
-    }
-
-    public boolean estVide() {
-        return piece == null;
+    public int getId() {
+        return id;
     }
 
     public Piece getPiece() {
         return piece;
+    }
+
+    public boolean estVide(){
+        return piece == null;
+    }
+
+    public void setPiece(Piece piece) {
+        this.piece = piece;
+    }
+
+    public void retirerPiece(){
+        this.piece = null;
     }
 }

@@ -1,21 +1,17 @@
-public class Piece {
-    protected String type;  // Indicates the type of piece
-    protected String color; // Indicates the color of the piece
+import java.util.List;
 
-    public Piece(String color) {
+public abstract class Piece {
+    private final String color;
+
+    public Piece(String color){
         this.color = color;
-        this.type = "Piece"; // Default type
-    }
-
-    public String getType() {
-        return type;
     }
 
     public String getColor() {
         return color;
     }
 
-    public void promoteToDame() {
-        // Placeholder for promotion logic, overridden in subclasses
-    }
+    public abstract String getType();
+
+    public abstract List<Integer> mouvementsPossibles(int position);
 }
